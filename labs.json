@@ -1,12 +1,1 @@
-[
-  {
-    "id": 1,
-    "lab": "lab01",
-    "giturl": "https://github.com/Duhsten/cs2440-manager.git"
-  },
-  {
-    "id": 2,
-    "lab": "lab02",
-    "giturl": "https://github.com/Duhsten/cs2440-manager.git"
-  }
-]
+[{"date": 0, "labName": "lab01", "gitURL": "www.google.com"}, {"date": 0, "labName": "lab02", "gitURL": "www.google.com"}]
