@@ -1,5 +1,5 @@
 import json
-
+import os
 from urllib.request import urlopen
 class bcolors:
     HEADER = '\033[95m'
@@ -11,7 +11,21 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+class Lab:
+	def __init__(self, labName, gitURL, date):
+		self.labName = labName
+		self.gitURL = gitURL
+		self.date = date
 
+def addNewLab(labName, gitURL):
+    labs = getLabList()
+    newLab = Lab(labName, gitURL, 0)
+    labs.append(newLab.__dict__)
+    jsonStr = json.dumps(labs)
+    os.remove("labs.json")
+    text_file = open("labs.json", "w")
+    text_file.write(jsonStr)
+    text_file.close()
 
 def getLabCount():
     from urllib.request import urlopen
@@ -38,7 +52,17 @@ def cmd():
     if cmd == "help":
         print("Help:")
         print("pull <lab> - ")
-
+        print("add <labName> <gitURL>")
+    elif cmd.startswith("add"):
+        subcmd = cmd.split(" ")
+        addNewLab(subcmd[1], subcmd[2])
+        print(f"{bcolors.ENDC}Adding New Lab {bcolors.HEADER}" + subcmd[1])
+        print(f"{bcolors.ENDC} Would you like to pull from GitHub now? Y/n")
+        result = input()
+        if result == "yes" or result == "y":
+            print()
+        elif result == "no" or result == "n":
+            print()
 
 
 
